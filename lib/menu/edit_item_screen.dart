@@ -66,7 +66,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                 decoration: const InputDecoration(labelText: 'Nama Item'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'isin nama item terlebih dahulu';
+                    return 'isi nama item terlebih dahulu';
                   }
                   return null;
                 },
@@ -76,7 +76,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                 decoration: const InputDecoration(labelText: 'Deskripsi Item'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'isin deskripsi item terlebih dahulu';
+                    return 'isi deskripsi item terlebih dahulu';
                   }
                   return null;
                 },
@@ -87,7 +87,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || double.tryParse(value) == null) {
-                    return 'isin harga item terlebih dahulu';
+                    return 'isi harga item terlebih dahulu';
                   }
                   return null;
                 },

@@ -48,3 +48,35 @@ Aplikasi e-commerce sederhana ini dibangun menggunakan Flutter. Aplikasi ini dir
     ```
 
 ## Struktur Proyek
+## 🗂️ Struktur Proyek
+
+```text
+lib/
+├── auth/
+│   ├── login_screen.dart           # UI & logika layar login
+│   └── register_screen.dart        # UI & logika layar registrasi
+├── db/
+│   ├── app_db.dart                 # Inisialisasi & konfigurasi SQLite
+│   └── repository.dart             # Operasi CRUD ke database
+├── menu/
+│   ├── admin_home_screen.dart      # Layar utama untuk admin
+│   ├── buyer_home_screen.dart      # Layar utama untuk pembeli
+│   ├── edit_item_screen.dart       # Admin tambah/ubah produk
+│   └── total_screen.dart           # (opsional) ringkasan/total
+├── models/
+│   ├── item.dart                   # Model produk
+│   ├── txn.dart                    # Model transaksi
+│   └── user.dart                   # Model pengguna
+├── screen/
+│   └── splash_screen.dart          # Layar pembuka aplikasi
+├── transactions/
+│   ├── checkout_screen.dart        # Proses checkout
+│   ├── receipt_screen.dart         # Struk/bukti transaksi
+│   ├── transaction_history_screen.dart  # Riwayat transaksi pembeli
+│   └── txn_detail_screen.dart      # Detail transaksi tertentu
+├── utils/
+│   └── format.dart                 # Fungsi utilitas (format mata uang, dll)
+└── main.dart                       # Titik masuk aplikasi, routing
+
+pubspec.yaml                        # File konfigurasi Flutter & dependensi
+README.md                           # Dokumentasi proyek ini
