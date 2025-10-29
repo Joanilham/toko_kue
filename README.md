@@ -46,9 +46,7 @@ Aplikasi e-commerce sederhana ini dibangun menggunakan Flutter. Aplikasi ini dir
     ```bash
     flutter run
     ```
-
 ## Struktur Proyek
-## 🗂️ Struktur Proyek
 
 ```text
 lib/
