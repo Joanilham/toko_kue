@@ -20,7 +20,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
     if (username.isEmpty || password.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Username and password cannot be empty')),
+        const SnackBar(content: Text('Username dan password tidak boleh kosong')),
       );
       return;
     }
@@ -28,14 +28,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
     final newUser = User(
       username: username,
       password: password,
-      role: 'buyer', // Default role for new users
+      role: 'buyer', 
     );
 
     try {
       await Repo.instance.register(newUser);
       if (!mounted) return;
             ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Registration successful! Please login.')),
+        const SnackBar(content: Text('Pendaftaran berhasil! Silakan login.')),
       );
       Navigator.pop(context);
     } catch (e) {
@@ -52,7 +52,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Register')),
+      appBar: AppBar(title: const Text('Pendaftaran')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -89,7 +89,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 50),
               ),
-              child: const Text('Register'),
+              child: const Text('Daftar'),
             ),
           ],
         ),

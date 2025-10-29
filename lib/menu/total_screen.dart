@@ -42,7 +42,7 @@ class _TotalScreenState extends State<TotalScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('All Transactions'),
+        title: const Text('semua transaksi'),
       ),
       body: RefreshIndicator(
         onRefresh: _loadTransactions,
@@ -53,7 +53,7 @@ class _TotalScreenState extends State<TotalScreen> {
             return Card(
               margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: ListTile(
-                title: Text('Transaction #${txn.id}'),
+                title: Text('Transaksi #${txn.id}'),
                 subtitle: Text(
                     'Date: ${DateFormat.yMd().add_jms().format(DateTime.parse(txn.datetime))}\nStatus: ${txn.status}'),
                 trailing: Text(formatCurrency.format(txn.total)),

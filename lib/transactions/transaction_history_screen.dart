@@ -36,7 +36,7 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('My Transactions'),
+        title: const Text('Transaksi Saya'),
       ),
       body: RefreshIndicator(
         onRefresh: _loadTransactions,
@@ -48,14 +48,14 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
               margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: ExpansionTile(
                 title: Text(
-                  'Transaction #${txn.id}',
+                  'Transaksi #${txn.id}',
                   style: const TextStyle(fontWeight: FontWeight.bold),
                 ),
                 subtitle: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                        'Date: ${DateFormat.yMd().add_jms().format(DateTime.parse(txn.datetime))}'),
+                        'Tanggal: ${DateFormat.yMd().add_jms().format(DateTime.parse(txn.datetime))}'),
                     Text('Total: ${formatCurrency.format(txn.total)}'),
                     Text('Status: ${txn.status.toUpperCase()}',
                         style: const TextStyle(fontWeight: FontWeight.bold)),
@@ -68,9 +68,9 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Location: ${txn.location}'),
+                        Text('Lokasi: ${txn.location}'),
                         const SizedBox(height: 8),
-                        const Text('Items:',
+                        const Text('Item:',
                             style: TextStyle(fontWeight: FontWeight.bold)),
                         FutureBuilder<List<Map<String, dynamic>>>(
                           future: Repo.instance.getTxnItems(txn.id!),
@@ -81,17 +81,17 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
                                   child: CircularProgressIndicator());
                             }
                             if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                              return const Text('No items found.');
+                              return const Text('Tidak ada item dalam transaksi.');
                             }
                             final items = snapshot.data!;
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: items.map((item) {
                                 return ListTile(
-                                  title: Text(item['name']),
-                                  subtitle: Text('Qty: ${item['quantity']}'),
+                                  title: Text(item['nama']),
+                                  subtitle: Text('Qty: ${item['jumlah']}'),
                                   trailing: Text(formatCurrency
-                                      .format(item['price'] * item['quantity'])),
+                                      .format(item['harga'] * item['jumlah'])),
                                 );
                               }).toList(),
                             );

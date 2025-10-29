@@ -20,7 +20,7 @@ class ReceiptScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Receipt'),
+        title: const Text('Struk'),
         automaticallyImplyLeading: false,
       ),
       body: Padding(
@@ -30,13 +30,13 @@ class ReceiptScreen extends StatelessWidget {
           children: [
             Center(
               child: Text(
-                'Transaction #$txnId',
+                'Pesanan #$txnId',
                 style:
                     const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
               ),
             ),
             const SizedBox(height: 20),
-            const Text('Items:',
+            const Text('Daftar Pesanan:',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
             const Divider(),
             Expanded(
@@ -77,7 +77,7 @@ class ReceiptScreen extends StatelessWidget {
                   // Kembali ke menu utama pembeli dan hapus semua layar di atasnya
                   Navigator.pop(context, true);
                 },
-                child: const Text('Done'),
+                child: const Text('Selesai'),
               ),
             ),
           ],

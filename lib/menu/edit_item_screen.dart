@@ -53,7 +53,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.item == null ? 'Add Item' : 'Edit Item'),
+        title: Text(widget.item == null ? 'tambah item' : 'Edit Item'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -63,31 +63,31 @@ class _EditItemScreenState extends State<EditItemScreen> {
             children: [
               TextFormField(
                 controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
+                decoration: const InputDecoration(labelText: 'Nama Item'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a name';
+                    return 'isin nama item terlebih dahulu';
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: _descriptionController,
-                decoration: const InputDecoration(labelText: 'Description'),
+                decoration: const InputDecoration(labelText: 'Deskripsi Item'),
                 validator: (value) {
                   if (value == null || value.isEmpty) {
-                    return 'Please enter a description';
+                    return 'isin deskripsi item terlebih dahulu';
                   }
                   return null;
                 },
               ),
               TextFormField(
                 controller: _priceController,
-                decoration: const InputDecoration(labelText: 'Price'),
+                decoration: const InputDecoration(labelText: 'Harga Item'),
                 keyboardType: TextInputType.number,
                 validator: (value) {
                   if (value == null || double.tryParse(value) == null) {
-                    return 'Please enter a valid price';
+                    return 'isin harga item terlebih dahulu';
                   }
                   return null;
                 },
@@ -95,7 +95,7 @@ class _EditItemScreenState extends State<EditItemScreen> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: _saveItem,
-                child: const Text('Save Item'),
+                child: const Text('Simpan Item'),
               ),
             ],
           ),

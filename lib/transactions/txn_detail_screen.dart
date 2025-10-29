@@ -32,7 +32,7 @@ class _TxnDetailScreenState extends State<TxnDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Transaction #${widget.txn.id}'),
+        title: Text('Detail Pesanan #${widget.txn.id}'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -40,9 +40,9 @@ class _TxnDetailScreenState extends State<TxnDetailScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-                'Date: ${DateFormat.yMd().add_jms().format(DateTime.parse(widget.txn.datetime))}'),
+                'Tanggal: ${DateFormat.yMd().add_jms().format(DateTime.parse(widget.txn.datetime))}'),
             Text('Total: ${formatCurrency.format(widget.txn.total)}'),
-            Text('Location: ${widget.txn.location}'),
+            Text('Lokasi: ${widget.txn.location}'),
             const SizedBox(height: 20),
             DropdownButtonFormField<String>(
               value: _selectedStatus,
@@ -50,7 +50,7 @@ class _TxnDetailScreenState extends State<TxnDetailScreen> {
                 labelText: 'Status',
                 border: OutlineInputBorder(),
               ),
-              items: ['pending', 'terima', 'kirim', 'completed', 'cancelled']
+              items: ['pending', 'terima', 'kirim', 'selesai', 'batal']
                   .map((status) => DropdownMenuItem(
                         value: status,
                         child: Text(status),

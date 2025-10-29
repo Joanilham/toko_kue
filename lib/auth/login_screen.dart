@@ -38,7 +38,7 @@ class _LoginScreenState extends State<LoginScreen> {
     } else {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Invalid username or password')),
+        const SnackBar(content: Text('Username atau password salah')),
       );
     }
   }
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   MaterialPageRoute(builder: (context) => const RegisterScreen()),
                 );
               },
-              child: const Text('Belum memiliki akun? Daftar'),
+              child: const Text('Belum memiliki akun? Pendaftaran'),
             ),
           ],
         ),

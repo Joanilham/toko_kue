@@ -79,7 +79,7 @@ class _BuyerMenuScreenState extends State<BuyerMenuScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.history),
-            tooltip: 'My Transactions',
+            tooltip: 'Riwayat Transaksi',
             onPressed: () {
               Navigator.push(
                 context,

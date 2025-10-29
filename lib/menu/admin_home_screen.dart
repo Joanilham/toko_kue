@@ -55,7 +55,7 @@ class _MenuScreenState extends State<MenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Admin Menu - Manage Items'),
+        title: const Text('Admin Menu - Manajemen Menu'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -71,7 +71,7 @@ class _MenuScreenState extends State<MenuScreen> {
           ),
           IconButton(
             icon: const Icon(Icons.receipt_long),
-            tooltip: 'View Transactions',
+            tooltip: 'Lihat Semua Transaksi',
             onPressed: () {
               Navigator.push(
                 context,

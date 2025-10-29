@@ -1,6 +1,6 @@
 # Toko Sahabat
 
-Toko Sahabat adalah aplikasi e-commerce sederhana yang dibangun menggunakan Flutter. Aplikasi ini dirancang sebagai contoh implementasi fitur-fitur dasar pada aplikasi mobile, seperti autentikasi pengguna, manajemen data produk, dan proses transaksi. Aplikasi ini menggunakan database SQLite lokal untuk menyimpan semua data.
+Aplikasi e-commerce sederhana ini dibangun menggunakan Flutter. Aplikasi ini dirancang sebagai contoh implementasi fitur-fitur dasar pada aplikasi mobile, seperti autentikasi pengguna, manajemen data produk, dan proses transaksi. Dan juga aplikasi ini menggunakan database SQLite lokal untuk menyimpan semua data.
 
 ## Fitur
 
@@ -48,36 +48,3 @@ Toko Sahabat adalah aplikasi e-commerce sederhana yang dibangun menggunakan Flut
     ```
 
 ## Struktur Proyek
-lib/
-├── auth/
-│   ├── login_screen.dart      # UI dan logika untuk layar login pengguna.
-│   └── register_screen.dart   # UI dan logika untuk layar registrasi pengguna baru.
-│
-├── db/
-│   ├── app_db.dart            # Inisialisasi dan konfigurasi database SQLite.
-│   └── repository.dart        # Logika untuk operasi CRUD (Create, Read, Update, Delete) ke database.
-│
-├── menu/
-│   ├── admin_home_screen.dart # Layar utama untuk admin, menampilkan menu manajemen.
-│   ├── buyer_home_screen.dart # Layar utama untuk pembeli, menampilkan daftar produk.
-│   ├── edit_item_screen.dart  # Layar untuk admin menambah atau mengubah data produk.
-│   └── total_screen.dart      # (Kemungkinan) Layar untuk menampilkan total atau ringkasan.
-│
-├── models/
-│   ├── item.dart              # Model data untuk merepresentasikan sebuah produk/item.
-│   ├── txn.dart               # Model data untuk merepresentasikan sebuah transaksi.
-│   └── user.dart              # Model data untuk merepresentasikan seorang pengguna.
-│
-├── screen/
-│   └── splash_screen.dart     # Layar pembuka (splash screen) yang muncul saat aplikasi pertama kali dibuka.
-│
-├── transactions/
-│   ├── checkout_screen.dart   # Layar proses checkout dan konfirmasi pembayaran.
-│   ├── receipt_screen.dart    # Menampilkan struk atau bukti transaksi setelah checkout.
-│   ├── transaction_history_screen.dart # Menampilkan riwayat transaksi khusus untuk pembeli.
-│   └── txn_detail_screen.dart # Menampilkan detail dari satu transaksi tertentu.
-│
-├── utils/
-│   └── format.dart            # Fungsi utilitas, seperti untuk memformat angka menjadi format mata uang.
-│
-└── main.dart                  # Titik masuk utama aplikasi Flutter, menginisialisasi aplikasi dan routing awal.

@@ -56,8 +56,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
         _currentPosition = position;
       });
     } catch (e) {
-      // ignore: avoid_print
-      print('Error getting location: $e');
+      print('Error mendapatkan lokasi: $e');
     }
   }
 
@@ -78,7 +77,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
       total: total,
       location: _currentPosition != null
           ? '${_currentPosition!.latitude},${_currentPosition!.longitude}'
-          : 'Location not available',
+          : 'Lokasi tidak tersedia',
       status: 'pending',
     );
 
@@ -120,7 +119,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Text(
-              'Order Summary',
+              'Ringkasan Pesanan',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 16),
@@ -134,7 +133,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                       .firstWhere((element) => element.id == itemId);
                   return ListTile(
                     title: Text(item.name),
-                    subtitle: Text('Qty: $quantity'),
+                    subtitle: Text('Jumlah: $quantity'),
                     trailing:
                         Text(formatCurrency.format(item.price * quantity!)),
                   );
@@ -162,10 +161,10 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                   ? const Row(children: [
                       CircularProgressIndicator(),
                       SizedBox(width: 10),
-                      Text("Getting location...")
+                      Text("Mencari lokasi...")
                     ])
                   : Text(
-                      'Location (GPS): ${_currentPosition != null ? "${_currentPosition!.latitude.toStringAsFixed(5)}, ${_currentPosition!.longitude.toStringAsFixed(5)}" : "Not available"}'),
+                      'Lokasi (GPS): ${_currentPosition != null ? "${_currentPosition!.latitude.toStringAsFixed(5)}, ${_currentPosition!.longitude.toStringAsFixed(5)}" : "Tidak tersedia"}'),
             ),
             const SizedBox(height: 20),
             SizedBox(
@@ -174,7 +173,7 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                 onPressed: _isFetchingLocation || _currentPosition == null
                     ? null
                     : _checkout,
-                child: const Text('Confirm and Pay'),
+                child: const Text('Konfirmasi dan Bayar'),
               ),
             ),
           ],
