@@ -5,6 +5,7 @@ class Txn {
   final double total;
   final String location;
   final String status;
+  final String? buyerName;
 
   Txn({
     this.id,
@@ -13,6 +14,7 @@ class Txn {
     required this.total,
     required this.location,
     required this.status,
+    this.buyerName,
   });
 
   Map<String, dynamic> toMap() {
@@ -34,6 +36,7 @@ class Txn {
       total: map['total'],
       location: map['location'] ?? 'No Location',
       status: map['status'],
+      buyerName: map['buyerName'],
     );
   }
 }

@@ -19,9 +19,9 @@ class AppDatabase {
 
     return await openDatabase(
       path,
-      version: 2, // Versi database dinaikkan menjadi 2
+      version: 2, 
       onCreate: _onCreate,
-      onUpgrade: _onUpgrade, // Menambahkan fungsi onUpgrade
+      onUpgrade: _onUpgrade,
     );
   }
 
@@ -64,19 +64,16 @@ class AppDatabase {
       )
     ''');
 
-    // Insert admin user with hashed password
     await db.rawInsert(
         'INSERT INTO users(username, password, role) VALUES(?, ?, ?)', [
       'admin',
-      '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', // sha256 of 'admin'
+      '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918',
       'admin'
     ]);
   }
 
-  // Fungsi ini akan dijalankan jika versi database berubah
   Future _onUpgrade(Database db, int oldVersion, int newVersion) async {
     if (oldVersion < 2) {
-      // Update password admin dari 'admin' ke hash jika versi sebelumnya adalah 1
       await db.rawUpdate(
         'UPDATE users SET password = ? WHERE username = ? AND role = ?',
         [

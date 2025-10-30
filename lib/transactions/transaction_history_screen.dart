@@ -55,8 +55,8 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                        'Tanggal: ${DateFormat.yMd().add_jms().format(DateTime.parse(txn.datetime))}'),
-                    Text('Total: ${formatCurrency.format(txn.total)}'),
+                        'Tanggal: ${txn.datetime != null ? DateFormat.yMd().add_jms().format(DateTime.parse(txn.datetime!)) : '-'}'),
+                    Text('Total: ${formatCurrency.format(txn.total ?? 0)}'),
                     Text('Status: ${txn.status.toUpperCase()}',
                         style: const TextStyle(fontWeight: FontWeight.bold)),
                   ],
@@ -68,7 +68,7 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text('Lokasi: ${txn.location}'),
+                        Text('Lokasi: ${txn.location ?? '-'}'),
                         const SizedBox(height: 8),
                         const Text('Item:',
                             style: TextStyle(fontWeight: FontWeight.bold)),
@@ -88,10 +88,10 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: items.map((item) {
                                 return ListTile(
-                                  title: Text(item['nama']),
-                                  subtitle: Text('Qty: ${item['jumlah']}'),
+                                  title: Text(item['name'] ?? 'Nama Item Tidak Tersedia'),
+                                  subtitle: Text('Qty: ${item['quantity'] ?? 0}'),
                                   trailing: Text(formatCurrency
-                                      .format(item['harga'] * item['jumlah'])),
+                                      .format((item['price'] ?? 0) * (item['quantity'] ?? 0))),
                                 );
                               }).toList(),
                             );

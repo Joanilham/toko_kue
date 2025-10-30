@@ -51,6 +51,31 @@ class _MenuScreenState extends State<MenuScreen> {
     }
   }
 
+  void _deleteItem(Item item) async {
+    final confirmed = await showDialog<bool>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Hapus Item'),
+        content: Text('Anda yakin ingin menghapus ${item.name}?'),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context, false),
+            child: const Text('Batal'),
+          ),
+          TextButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: const Text('Hapus'),
+          ),
+        ],
+      ),
+    );
+
+    if (confirmed == true) {
+      await Repo.instance.deleteItem(item.id!);
+      _loadItems();
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,9 +113,19 @@ class _MenuScreenState extends State<MenuScreen> {
           return Card(
             margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: ListTile(
-              title: Text(item.name, style: const TextStyle(fontWeight: FontWeight.bold)),
+              title: Text(item.name,
+                  style: const TextStyle(fontWeight: FontWeight.bold)),
               subtitle: Text(item.description),
-              trailing: Text(formatCurrency.format(item.price)),
+              trailing: Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(formatCurrency.format(item.price)),
+                  IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () => _deleteItem(item),
+                  ),
+                ],
+              ),
               onTap: () => _editItem(item),
             ),
           );

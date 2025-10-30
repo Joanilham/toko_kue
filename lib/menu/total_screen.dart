@@ -51,11 +51,10 @@ class _TotalScreenState extends State<TotalScreen> {
           itemBuilder: (context, index) {
             final txn = _transactions[index];
             return Card(
-              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               child: ListTile(
                 title: Text('Transaksi #${txn.id}'),
                 subtitle: Text(
-                    'Date: ${DateFormat.yMd().add_jms().format(DateTime.parse(txn.datetime))}\nStatus: ${txn.status}'),
+                    'Pembeli: ${txn.buyerName ?? '-'}\nDate: ${DateFormat.yMd().add_jms().format(DateTime.parse(txn.datetime))}\nStatus: ${txn.status}'),
                 trailing: Text(formatCurrency.format(txn.total)),
                 isThreeLine: true,
                 onTap: () => _viewTransactionDetail(txn),

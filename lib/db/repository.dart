@@ -54,6 +54,15 @@ class Repo {
     );
   }
 
+  Future<int> deleteItem(int id) async {
+    final db = await AppDatabase.instance.database;
+    return await db.delete(
+      'items',
+      where: 'id = ?',
+      whereArgs: [id],
+    );
+  }
+
   Future<int> createTxn(Txn txn) async {
     final db = await AppDatabase.instance.database;
     return await db.insert('txns', txn.toMap());
@@ -70,8 +79,12 @@ class Repo {
 
   Future<List<Txn>> getAllTransactions() async {
     final db = await AppDatabase.instance.database;
-    final List<Map<String, dynamic>> maps =
-        await db.query('txns', orderBy: 'datetime DESC');
+    final List<Map<String, dynamic>> maps = await db.rawQuery('''
+      SELECT t.*, u.username as buyerName 
+      FROM txns t
+      JOIN users u ON t.user_id = u.id
+      ORDER BY t.datetime DESC
+    ''');
     return List.generate(maps.length, (i) {
       return Txn.fromMap(maps[i]);
     });

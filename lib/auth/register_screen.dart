@@ -43,8 +43,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
             content: Text(e.toString().contains('UNIQUE constraint failed')
-                ? 'Username already exists. Please choose another one.'
-                : 'Registration failed: $e')),
+                ? 'Username sudah ada. Silakan pilih username lain.'
+                : 'Pendaftaran gagal: $e')),
       );
     }
   }
