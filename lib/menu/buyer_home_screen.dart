@@ -63,7 +63,7 @@ class _BuyerMenuScreenState extends State<BuyerMenuScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-         title: Text('Selamat datang, ${widget.user.username}'),
+        title: Text('Selamat datang, ${widget.user.username}'),
         actions: [
           IconButton(
             icon: const Icon(Icons.logout),
@@ -101,7 +101,8 @@ class _BuyerMenuScreenState extends State<BuyerMenuScreen> {
                 final item = _items[index];
                 final quantity = _cart[item.id] ?? 0;
                 return Card(
-                  margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  margin:
+                      const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Row(
@@ -113,7 +114,8 @@ class _BuyerMenuScreenState extends State<BuyerMenuScreen> {
                               Text(
                                 item.name,
                                 style: const TextStyle(
-                                    fontSize: 16, fontWeight: FontWeight.bold),
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold),
                               ),
                               Text(item.description),
                               Text(
@@ -164,7 +166,7 @@ class _BuyerMenuScreenState extends State<BuyerMenuScreen> {
                           final result = await Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) => TransactionsScreen(
+                              builder: (context) => CheckoutScreen(
                                 user: widget.user,
                                 cart: _cart,
                                 items: _items,

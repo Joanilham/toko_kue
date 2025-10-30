@@ -5,29 +5,28 @@ import 'package:toko_sahabat/models/txn.dart';
 import 'package:toko_sahabat/models/user.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:permission_handler/permission_handler.dart';
-import 'package:toko_sahabat/transactions/receipt_screen.dart';
+import 'package:toko_sahabat/transactions/order_status_screen.dart';
 import 'package:toko_sahabat/utils/format.dart';
 
-class TransactionsScreen extends StatefulWidget {
+class CheckoutScreen extends StatefulWidget {
   final User user;
   final Map<int, int> cart;
   final List<Item> items;
 
-  const TransactionsScreen(
+  const CheckoutScreen(
       {super.key, required this.user, required this.cart, required this.items});
 
   @override
-  State<TransactionsScreen> createState() => _TransactionsScreenState();
+  State<CheckoutScreen> createState() => _CheckoutScreenState();
 }
 
-class _TransactionsScreenState extends State<TransactionsScreen> {
+class _CheckoutScreenState extends State<CheckoutScreen> {
   Position? _currentPosition;
-  bool _isFetchingLocation = true;
+  bool _isFetchingLocation = false;
 
   @override
   void initState() {
     super.initState();
-    _getCurrentLocation();
   }
 
   Future<void> _getCurrentLocation() async {
@@ -92,11 +91,8 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
     final result = await Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => ReceiptScreen(
-          txnId: txnId,
-          cart: widget.cart,
-          items: widget.items,
-          total: total,
+        builder: (context) => const OrderStatusScreen(
+          status: 'pending',
         ),
       ),
     );
@@ -155,24 +151,31 @@ class _TransactionsScreenState extends State<TransactionsScreen> {
                 ),
               ],
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8.0),
-              child: _isFetchingLocation
-                  ? const Row(children: [
-                      CircularProgressIndicator(),
-                      SizedBox(width: 10),
-                      Text("Mencari lokasi...")
-                    ])
-                  : Text(
-                      'Lokasi (GPS): ${_currentPosition != null ? "${_currentPosition!.latitude.toStringAsFixed(5)}, ${_currentPosition!.longitude.toStringAsFixed(5)}" : "Tidak tersedia"}'),
-            ),
+            const SizedBox(height: 10),
+            if (_isFetchingLocation)
+              const Row(
+                children: [
+                  CircularProgressIndicator(),
+                  SizedBox(width: 10),
+                  Text("Mencari lokasi..."),
+                ],
+              )
+            else if (_currentPosition != null)
+              Text(
+                  'Lokasi (GPS): ${_currentPosition!.latitude.toStringAsFixed(5)}, ${_currentPosition!.longitude.toStringAsFixed(5)}')
+            else
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _getCurrentLocation,
+                  child: const Text('Dapatkan Lokasi'),
+                ),
+              ),
             const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: _isFetchingLocation || _currentPosition == null
-                    ? null
-                    : _checkout,
+                onPressed: _currentPosition == null ? null : _checkout,
                 child: const Text('Konfirmasi dan Bayar'),
               ),
             ),

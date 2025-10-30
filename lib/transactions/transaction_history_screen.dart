@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:toko_sahabat/db/repository.dart';
+import 'package:toko_sahabat/models/item.dart';
 import 'package:toko_sahabat/models/txn.dart';
 import 'package:toko_sahabat/models/user.dart';
 import 'package:toko_sahabat/utils/format.dart';
@@ -72,7 +73,7 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
                         const SizedBox(height: 8),
                         const Text('Item:',
                             style: TextStyle(fontWeight: FontWeight.bold)),
-                        FutureBuilder<List<Map<String, dynamic>>>(
+                        FutureBuilder<List<Item>>(
                           future: Repo.instance.getTxnItems(txn.id!),
                           builder: (context, snapshot) {
                             if (snapshot.connectionState ==
@@ -88,10 +89,10 @@ class _BuyerTransactionsScreenState extends State<BuyerTransactionsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: items.map((item) {
                                 return ListTile(
-                                  title: Text(item['name'] ?? 'Nama Item Tidak Tersedia'),
-                                  subtitle: Text('Qty: ${item['quantity'] ?? 0}'),
+                                  title: Text(item.name),
+                                  subtitle: Text('Qty: ${item.quantity ?? 0}'),
                                   trailing: Text(formatCurrency
-                                      .format((item['price'] ?? 0) * (item['quantity'] ?? 0))),
+                                      .format(item.price * (item.quantity ?? 0))),
                                 );
                               }).toList(),
                             );

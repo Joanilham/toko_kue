@@ -127,14 +127,16 @@ class Repo {
     return null;
   }
 
-  Future<List<Map<String, dynamic>>> getTxnItems(int txnId) async {
+  Future<List<Item>> getTxnItems(int txnId) async {
     final db = await AppDatabase.instance.database;
     final List<Map<String, dynamic>> maps = await db.rawQuery('''
-      SELECT i.name, ti.quantity, i.price 
+      SELECT i.*, ti.quantity 
       FROM txn_items ti
       JOIN items i ON i.id = ti.item_id
       WHERE ti.txn_id = ?
     ''', [txnId]);
-    return maps;
+    return List.generate(maps.length, (i) {
+      return Item.fromMap(maps[i]);
+    });
   }
 }
